@@ -13,7 +13,16 @@ server.listen(PORT, () => {
 });
 
 io.on("connection", socket => {
-  console.log("A new user just connected");
+  console.log("New connection!");
+
+  socket.on("message", messageSent => {
+    console.log(messageSent);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("user have left!");
+  });
+
   //   socket.emit("news", { hello: "world" });
   //   socket.on("my other event", function(data) {
   //     console.log(data);

@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import MessageDisplay from "./messageDisplay";
+import io from "socket.io-client";
 
 export default function ChatView({ name }) {
   const [messageSent, setMessageSent] = useState({
@@ -6,6 +8,13 @@ export default function ChatView({ name }) {
     message: "",
     time: ""
   });
+
+  const ENDPOINT = "localhost:5000";
+
+  useEffect(() => {
+    let socket = io(ENDPOINT);
+    socket.emit("message", messageSent);
+  }, [ENDPOINT, messageSent]);
 
   const handleChange = e => {
     const currentTime = new Date();
@@ -36,13 +45,14 @@ export default function ChatView({ name }) {
 
   return (
     <div className="chatView">
-      <div className="messageDisplay"></div>
+      <MessageDisplay />
       <form onSubmit={handleSubmit} className="textEntry">
         <p className="userName">{name}</p>
         <input
           className="messageInput"
           type="text"
           onChange={handleChange}
+          placeholder="..."
           value={messageSent.message}
         />
         <button className="sendBtn" type="submit">
