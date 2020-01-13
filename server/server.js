@@ -12,9 +12,10 @@ server.listen(PORT, () => {
   console.log(`Server has started on port ${PORT}`);
 });
 
-io.on("connection", function(socket) {
-  socket.emit("news", { hello: "world" });
-  socket.on("my other event", function(data) {
-    console.log(data);
-  });
+io.on("connection", socket => {
+  console.log("A new user just connected");
+  //   socket.emit("news", { hello: "world" });
+  //   socket.on("my other event", function(data) {
+  //     console.log(data);
+  //   });
 });
