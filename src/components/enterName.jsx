@@ -1,19 +1,20 @@
-import React from "react";
-import useSetName from "./setName";
+import React, { useState } from "react";
 
-export default function EnterName() {
-  const { handleChange, handleSubmit } = useSetName("");
+export default function EnterName({ onEnterName }) {
+  const [value, setValue] = useState();
 
-  //   const handleSubmit = e => {
-  //     e.preventDe1fault();
-  //     setView("chatView");
+  const handleChange = e => {
+    setValue(e.target.value);
+  };
 
-  //     console.log("submitting", view);
-  //   };
+  const handleSubmit = e => {
+    e.preventDefault();
+    onEnterName(value);
+  };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" placeholder={"enter name"} {...handleChange} />
+      <input type="text" placeholder={"enter name"} onChange={handleChange} />
       <button type="submit">ok</button>
     </form>
   );

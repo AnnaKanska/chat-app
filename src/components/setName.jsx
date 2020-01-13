@@ -8,16 +8,6 @@ export default function useSetName() {
     name,
     setName,
     view,
-    setView,
-    handleChange: {
-      name,
-      onChange: event => {
-        setName(event.target.value);
-      }
-    },
-    handleSubmit: e => {
-      e.preventDefault();
-      setView("chatView");
-    }
+    setView
   };
 }

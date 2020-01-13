@@ -5,9 +5,18 @@ import ChatView from "./components/chatView";
 import "./App.css";
 
 function App() {
-  const { view, name } = useSetName();
-  console.log(name, name.length);
-  return view === "enterName" ? <EnterName /> : <ChatView />;
+  const { view, setView, name, setName } = useSetName();
+
+  const handleEnterName = value => {
+    setName(value);
+    setView("chatView");
+  };
+
+  return view === "enterName" ? (
+    <EnterName onEnterName={handleEnterName} />
+  ) : (
+    <ChatView name={name} />
+  );
 }
 
 export default App;
