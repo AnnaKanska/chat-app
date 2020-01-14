@@ -3,6 +3,7 @@ import MessageDisplay from "./messageDisplay";
 import io from "socket.io-client";
 
 export default function ChatView({ name }) {
+  const [message, setMessage] = useState("");
   const [messageSent, setMessageSent] = useState({
     name: name,
     message: "",
@@ -14,9 +15,18 @@ export default function ChatView({ name }) {
   useEffect(() => {
     let socket = io(ENDPOINT);
     socket.emit("message", messageSent);
-  }, [ENDPOINT, messageSent]);
+  }, [messageSent]);
 
   const handleChange = e => {
+    setMessage(e.target.value);
+  };
+
+  function clearMessage() {
+    setMessage("");
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
     const currentTime = new Date();
     const currentTimeStr =
       ("00" + currentTime.getMonth() + 1).slice(-2) +
@@ -30,17 +40,8 @@ export default function ChatView({ name }) {
       ("00" + currentTime.getMinutes()).slice(-2) +
       ":" +
       ("00" + currentTime.getSeconds()).slice(-2);
-    setMessageSent({
-      ...messageSent,
-      message: e.target.value,
-      time: currentTimeStr
-    });
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    setMessageSent({ ...messageSent, message: "", time: "" });
-    console.log(messageSent);
+    setMessageSent({ ...messageSent, message: message, time: currentTimeStr });
+    clearMessage();
   };
 
   return (
@@ -53,7 +54,7 @@ export default function ChatView({ name }) {
           type="text"
           onChange={handleChange}
           placeholder="..."
-          value={messageSent.message}
+          value={message}
         />
         <button className="sendBtn" type="submit">
           send
