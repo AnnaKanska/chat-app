@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ScrollToBottom from "react-scroll-to-bottom";
 import "./chatView.css";
 import io from "socket.io-client";
 
@@ -27,5 +28,9 @@ export default function MessageDisplay() {
       ))
     );
 
-  return <div className="messageDisplay">{displayed}</div>;
+  return (
+    <div className="messageDisplay">
+      <ScrollToBottom className="scrollingDisplay">{displayed}</ScrollToBottom>
+    </div>
+  );
 }
