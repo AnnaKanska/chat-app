@@ -1,12 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 
+const ENDPOINT = "localhost:5000";
+let socket = io(ENDPOINT);
+
 export default function MessageDisplay() {
-  const ENDPOINT = "localhost:5000";
+  const [received, setReceived] = useState([]);
 
   useEffect(() => {
-    let socket = io(ENDPOINT);
-    socket.on("message");
-  }, [ENDPOINT]);
-  return <div className="messageDisplay"></div>;
+    socket.on("message", receivedMessage => {
+      setReceived([...received, receivedMessage]);
+    });
+  }, []);
+
+  const displayed =
+    received.length === 0 ? (
+      <p>no messages</p>
+    ) : (
+      received.map(x => (
+        <div key={x.time}>
+          <p>{x.name}</p>
+          <p>{x.time}</p>
+          <p>{x.message}</p>
+        </div>
+      ))
+    );
+
+  return <div className="messageDisplay">{displayed}</div>;
 }

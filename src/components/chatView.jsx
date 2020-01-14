@@ -1,21 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MessageDisplay from "./messageDisplay";
 import io from "socket.io-client";
 
+const ENDPOINT = "localhost:5000";
+let socket = io(ENDPOINT);
+
 export default function ChatView({ name }) {
   const [message, setMessage] = useState("");
-  const [messageSent, setMessageSent] = useState({
-    name: name,
-    message: "",
-    time: ""
-  });
-
-  const ENDPOINT = "localhost:5000";
-
-  useEffect(() => {
-    let socket = io(ENDPOINT);
-    socket.emit("message", messageSent);
-  }, [messageSent]);
 
   const handleChange = e => {
     setMessage(e.target.value);
@@ -40,7 +31,11 @@ export default function ChatView({ name }) {
       ("00" + currentTime.getMinutes()).slice(-2) +
       ":" +
       ("00" + currentTime.getSeconds()).slice(-2);
-    setMessageSent({ ...messageSent, message: message, time: currentTimeStr });
+    socket.emit("message", {
+      name: name,
+      message: message,
+      time: currentTimeStr
+    });
     clearMessage();
   };
 
