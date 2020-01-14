@@ -3,31 +3,3 @@ body {
   font-family: "Gayathri", sans-serif;
   text-align: center;
 }
-.chatView {
-  background-color: rgb(250, 155, 143);
-}
-.messageDisplay {
-  background-color: white;
-  height: 400px;
-  margin: 20px;
-  padding: 5px;
-}
-.textEntry {
-  display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
-  grid-template-areas: "name msg btn";
-}
-.userName {
-  grid-area: name;
-  font-family: Helvetica, sans-serif;
-  font-size: 25px;
-  margin: 10px 0;
-}
-.messageInput {
-  grid-area: msg;
-  border: white 1px solid;
-  margin: 2px;
-}
-.sendBtn {
-  grid-area: btn;
-}

@@ -1,0 +1,71 @@
+.chatView {
+  background-color: lightgray;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.textEntry {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-areas: "name msg btn";
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.userName {
+  grid-area: name;
+  font-family: Helvetica, sans-serif;
+  font-size: 25px;
+  margin: 10px 0;
+}
+.messageInput {
+  grid-area: msg;
+  border: white 1px solid;
+  margin: 2px;
+}
+.sendBtn {
+  grid-area: btn;
+}
+
+.messageDisplay {
+  position: fixed;
+  width: 90%;
+  margin: auto;
+  padding: 5px;
+  background-color: white;
+  height: 80%;
+  text-align: left;
+  overflow-y: scroll;
+}
+.messageInput::-webkit-scrollbar {
+  width: 10px;
+  background-color: red;
+}
+
+.displayMsgContainer {
+  display: grid;
+  grid-template-areas:
+    "name msg"
+    "time time";
+  grid-template-columns: 0.5fr 4fr;
+  border: solid 0.2px rgb(114, 54, 255);
+  margin: 5px;
+  padding: 7px;
+}
+.displayName {
+  grid-area: name;
+  font-weight: bold;
+}
+.displayTime {
+  grid-area: time;
+  color: rgba(129, 129, 129, 0.548);
+  font-size: 14px;
+  text-align: right;
+}
+.displayMsg {
+  grid-area: msg;
+  text-align: left;
+}

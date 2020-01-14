@@ -19,10 +19,10 @@ export default function MessageDisplay() {
       <p>no messages</p>
     ) : (
       received.map(x => (
-        <div key={x.time}>
-          <p>{x.name}</p>
-          <p>{x.time}</p>
-          <p>{x.message}</p>
+        <div className="displayMsgContainer" key={x.time}>
+          <p className="displayName">{x.name}</p>
+          <p className="displayTime">{x.time}</p>
+          <p className="displayMsg">{x.message}</p>
         </div>
       ))
     );
