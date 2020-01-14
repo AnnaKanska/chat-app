@@ -9,7 +9,7 @@ export default function MessageDisplay() {
 
   useEffect(() => {
     socket.on("message", receivedMessage => {
-      setReceived([...received, receivedMessage]);
+      setReceived(previous => [...previous, receivedMessage]);
     });
   }, []);
 
