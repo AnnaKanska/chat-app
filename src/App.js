@@ -1,7 +1,7 @@
 import React from "react";
-import EnterName from "./components/enterName";
+import EnterName from "./components/enterName/enterName";
 import useSetName from "./components/setName";
-import ChatView from "./components/chatView";
+import ChatView from "./components/chatView/chatView";
 import "./App.css";
 
 function App() {

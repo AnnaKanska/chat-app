@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./chatView.css";
 import io from "socket.io-client";
 
 const ENDPOINT = "localhost:5000";

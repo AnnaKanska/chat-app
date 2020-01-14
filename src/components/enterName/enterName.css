@@ -1,0 +1,13 @@
+.nameForm {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.nameForm input {
+  border: solid 0.2px gray;
+  border-radius: 0.2em;
+  height: 45px;
+  width: 300px;
+}
