@@ -8,12 +8,12 @@
 }
 
 .textEntry {
+  width: 90%;
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-columns: 0.5fr 4fr 1fr;
   grid-template-areas: "name msg btn";
-  width: 100%;
   position: absolute;
-  bottom: 0;
+  bottom: 60px;
 }
 .userName {
   grid-area: name;
@@ -28,6 +28,9 @@
 }
 .sendBtn {
   grid-area: btn;
+  background-color: rgba(148, 124, 148, 0.76);
+  border: 0.2px solid lightgray;
+  color: white;
 }
 
 .messageDisplay {
@@ -46,10 +49,8 @@
 
 .displayMsgContainer {
   display: grid;
-  grid-template-areas:
-    "name msg"
-    "time time";
-  grid-template-columns: 0.5fr 4fr;
+  grid-template-areas: "name msg time";
+  grid-template-columns: 0.5fr 4fr 1fr;
   border: solid 0.2px rgb(114, 54, 255);
   margin: 5px;
   padding: 7px;
@@ -63,8 +64,10 @@
   color: rgba(129, 129, 129, 0.548);
   font-size: 14px;
   text-align: right;
+  margin-bottom: 0;
 }
 .displayMsg {
   grid-area: msg;
   text-align: left;
+  word-break: break-all;
 }

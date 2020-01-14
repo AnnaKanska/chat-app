@@ -15,7 +15,12 @@ export default function EnterName({ onEnterName }) {
 
   return (
     <form className="nameForm" onSubmit={handleSubmit}>
-      <input type="text" placeholder={"enter name"} onChange={handleChange} />
+      <input
+        type="text"
+        maxlength="10"
+        placeholder={"enter name"}
+        onChange={handleChange}
+      />
       <button className="okBtn" type="submit">
         ok
       </button>
